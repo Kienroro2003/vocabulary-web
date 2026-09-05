@@ -44,6 +44,27 @@ Workflow `Frontend CI` chạy các bước này với Node.js 24 cho pull reques
 `main` và mỗi lần push lên `main`. Job `quality-gate` là integration contract:
 task publish image VA-31 phải khai báo `needs: quality-gate` trong cùng workflow.
 
+## Container production
+
+Build và chạy frontend bằng Nginx trên cổng `80` của container:
+
+```bash
+docker build -t vocabulary-web:local .
+docker run --rm -p 8080:80 vocabulary-web:local
+```
+
+Image public được publish tại `kienroro/vocabulary-web`. Pull và chạy bản mới
+nhất bằng:
+
+```bash
+docker pull kienroro/vocabulary-web:latest
+docker run --rm -p 8080:80 kienroro/vocabulary-web:latest
+```
+
+Push lên `main` tạo tag `latest` và `sha-<commit>`. Git tag `vX.Y.Z` tạo các
+Docker tag `X.Y.Z`, `X.Y` và `X`. Pull request chỉ build image đa kiến trúc để
+xác minh, không đăng nhập hoặc push lên Docker Hub.
+
 ## Quy ước liên kết Jira
 
 Branch, commit và pull request phải chứa Jira issue key, ví dụ:
