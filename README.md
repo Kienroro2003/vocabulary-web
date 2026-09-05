@@ -29,6 +29,21 @@ npm run build
 npm run preview
 ```
 
+## Quality gate
+
+Chạy đầy đủ các bước kiểm tra frontend trước khi mở pull request:
+
+```bash
+npm run lint
+npm run typecheck
+npm run test
+npm run build
+```
+
+Workflow `Frontend CI` chạy các bước này với Node.js 24 cho pull request vào
+`main` và mỗi lần push lên `main`. Job `quality-gate` là integration contract:
+task publish image VA-31 phải khai báo `needs: quality-gate` trong cùng workflow.
+
 ## Quy ước liên kết Jira
 
 Branch, commit và pull request phải chứa Jira issue key, ví dụ:
