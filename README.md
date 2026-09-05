@@ -4,7 +4,9 @@ Frontend React + TypeScript cho Vocabulary Manager MVP.
 
 Styling foundation dùng Tailwind CSS v4 thông qua Vite plugin. Design tokens nền
 tảng và keyboard focus được khai báo trong `src/index.css`; giao diện được xây
-theo hướng mobile-first với breakpoint `md` và `lg`.
+theo hướng desktop-first. Utility không prefix mô tả desktop từ 1024px; các
+variant `max-lg`, `max-md` và `max-sm` lần lượt điều chỉnh giao diện xuống
+tablet và mobile.
 
 ## Yêu cầu
 
